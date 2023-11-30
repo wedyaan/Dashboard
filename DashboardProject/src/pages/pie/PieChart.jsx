@@ -1,49 +1,44 @@
+import { ResponsivePie } from "@nivo/pie";
 import { Box, useTheme } from "@mui/material";
-import { ResponsiveBar } from "@nivo/bar";
+
 const data = [
   {
-    year: 2019,
-    Spain: 900,
-    France: 1400,
-    Germany: 1700,
+    id: "css",
+    label: "css",
+    value: 138,
+    color: "hsl(36, 70%, 50%)",
   },
-
   {
-    year: 2020,
-    Spain: 1000,
-    France: 1500,
-    Germany: 1800,
+    id: "react",
+    label: "react",
+    value: 56,
+    color: "hsl(120, 70%, 50%)",
   },
-
   {
-    year: 2021,
-    Spain: 1100,
-    France: 1600,
-    Germany: 1900,
+    id: "SQL",
+    label: "SQL",
+    value: 147,
+    color: "hsl(154, 70%, 50%)",
   },
-
   {
-    year: 2022,
-    Spain: 1200,
-    France: 1700,
-    Germany: 2000,
+    id: "JS",
+    label: "JS",
+    value: 409,
+    color: "hsl(310, 70%, 50%)",
   },
-
   {
-    year: 2023,
-    Spain: 1260,
-    France: 1709,
-    Germany: 2080,
+    id: "PHP",
+    label: "PHP",
+    value: 235,
+    color: "hsl(219, 70%, 50%)",
   },
 ];
-const BarChart = ({ isDashbord = false }) => {
+export const PieChart = ({ isDashbord = false }) => {
   const theme = useTheme();
   return (
-    <Box sx={{ height: isDashbord ? "300px" : "75vh" }}>
-      <ResponsiveBar
+    <Box sx={{ height: isDashbord ? "200px" : "75vh" }}>
+      <ResponsivePie
         data={data}
-        keys={["Spain", "France", "Germany"]}
-        indexBy="year"
         theme={{
           // @ts-ignore
           textColor: theme.palette.text.primary,
@@ -139,17 +134,32 @@ const BarChart = ({ isDashbord = false }) => {
             tableCellValue: {},
           },
         }}
-        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-        padding={0.3}
-        valueScale={{ type: "linear" }}
-        indexScale={{ type: "band", round: true }}
+        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+        innerRadius={0.5}
+        padAngle={0.7}
+        cornerRadius={3}
+        activeOuterRadiusOffset={8}
         colors={{ scheme: "paired" }}
+        borderWidth={1}
+        borderColor={{
+          from: "color",
+          modifiers: [["darker", 0.2]],
+        }}
+        arcLinkLabelsSkipAngle={10}
+        arcLinkLabelsTextColor={theme.palette.text.primary}
+        arcLinkLabelsThickness={2}
+        arcLinkLabelsColor={{ from: "color" }}
+        arcLabelsSkipAngle={10}
+        arcLabelsTextColor={{
+          from: "color",
+          modifiers: [["darker", 2]],
+        }}
         defs={[
           {
             id: "dots",
             type: "patternDots",
             background: "inherit",
-            color: "#38bcb2",
+            color: theme.palette.text.primary,
             size: 4,
             padding: 1,
             stagger: true,
@@ -158,7 +168,7 @@ const BarChart = ({ isDashbord = false }) => {
             id: "lines",
             type: "patternLines",
             background: "inherit",
-            color: "#eed312",
+            color: theme.palette.text.primary,
             rotation: -45,
             lineWidth: 6,
             spacing: 10,
@@ -167,77 +177,79 @@ const BarChart = ({ isDashbord = false }) => {
         fill={[
           {
             match: {
-              id: "fries",
+              id: "ruby",
             },
             id: "dots",
           },
           {
             match: {
-              id: "sandwich",
+              id: "c",
+            },
+            id: "dots",
+          },
+          {
+            match: {
+              id: "go",
+            },
+            id: "dots",
+          },
+          {
+            match: {
+              id: "python",
+            },
+            id: "dots",
+          },
+          {
+            match: {
+              id: "scala",
+            },
+            id: "lines",
+          },
+          {
+            match: {
+              id: "lisp",
+            },
+            id: "lines",
+          },
+          {
+            match: {
+              id: "elixir",
+            },
+            id: "lines",
+          },
+          {
+            match: {
+              id: "javascript",
             },
             id: "lines",
           },
         ]}
-        borderColor={{
-          from: "color",
-          modifiers: [["darker", 1.6]],
-        }}
-        axisTop={null}
-        axisRight={null}
-        axisBottom={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legendPosition: "middle",
-          legendOffset: 35,
-        }}
-        axisLeft={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legendPosition: "middle",
-          legendOffset: -55,
-        }}
-        labelSkipWidth={12}
-        labelSkipHeight={12}
-        labelTextColor={{
-          from: "color",
-          modifiers: [["darker", 1.6]],
-        }}
         legends={[
           {
-            dataFrom: "keys",
-            anchor: "bottom-right",
-            direction: "column",
+            anchor: "bottom",
+            direction: "row",
             justify: false,
-            translateX: 120,
-            translateY: 0,
-            itemsSpacing: 2,
+            translateX: 0,
+            translateY: 56,
+            itemsSpacing: 0,
             itemWidth: 100,
-            itemHeight: 20,
+            itemHeight: 18,
+            itemTextColor: theme.palette.text.primary,
             itemDirection: "left-to-right",
-            itemOpacity: 0.85,
-            symbolSize: 20,
+            itemOpacity: 1,
+            symbolSize: 18,
+            symbolShape: "circle",
             effects: [
               {
                 on: "hover",
                 style: {
-                  itemOpacity: 1,
+                  itemTextColor: theme.palette.text.primary,
                 },
               },
             ],
           },
         ]}
-        role="application"
-        ariaLabel="Nivo bar chart demo"
-        barAriaLabel={function (e) {
-          return (
-            e.id + ": " + e.formattedValue + " in country: " + e.indexValue
-          );
-        }}
       />
     </Box>
   );
 };
-
-export default BarChart;

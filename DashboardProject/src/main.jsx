@@ -18,7 +18,7 @@ import Pie from "./pages/pie/Pie";
 import Line from "./pages/line/Line";
 import Geography from "./pages/geography/Geography";
 import { Calander } from "./pages/calander/Calander";
-
+ 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>

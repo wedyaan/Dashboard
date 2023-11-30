@@ -107,4 +107,10 @@ export const Transactions = [
     date: "2022-04-01",
     cost: "133.49",
   },
+  {
+    txId: "01e4dsaewf",
+    user: "johndoe",
+    date: "2021-09-01",
+    cost: "43.91",
+  },
 ];
